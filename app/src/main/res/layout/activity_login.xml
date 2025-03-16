@@ -26,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="100"
         android:gravity="center"
         android:layout_marginEnd="16dp"
         app:layout_constraintStart_toStartOf="@id/welcomeText"
@@ -38,8 +37,7 @@
             android:fontFamily="sans-serif"
             android:text="@string/login_capitalized"
             android:textColor="@color/black"
-            android:textSize="48sp"
-            app:layout_constraintEnd_toStartOf="@id/motif1" />
+            android:textSize="48sp" />
 
         <ImageView
             android:id="@+id/motif1"
@@ -48,8 +46,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/motif_usu1"
             android:layout_marginStart="22dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toStartOf="@id/motif2"/>
+            android:layout_marginEnd="4dp"/>
 
         <ImageView
             android:id="@+id/motif2"
@@ -58,9 +55,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/motif_usu2"
             android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintStart_toEndOf="@id/motif1"
-            app:layout_constraintEnd_toStartOf="@id/motif3"/>
+            android:layout_marginEnd="4dp"/>
 
         <ImageView
             android:id="@+id/motif3"
@@ -69,9 +64,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/motif_usu3"
             android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintStart_toEndOf="@id/motif2"
-            app:layout_constraintEnd_toStartOf="@id/motif4"/>
+            android:layout_marginEnd="4dp"/>
 
         <ImageView
             android:id="@+id/motif4"
@@ -79,9 +72,7 @@
             android:layout_height="50dp"
             android:scaleType="centerCrop"
             android:src="@drawable/motif_usu4"
-            android:layout_marginStart="4dp"
-            app:layout_constraintStart_toEndOf="@id/motif3"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_marginStart="4dp"/>
 
     </LinearLayout>
 
@@ -101,7 +92,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputUsername"
         style="@style/custom_input"
-        android:hint="@string/username"
         app:startIconDrawable="@drawable/ic_account_circle_24"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,10 +99,12 @@
         app:layout_constraintTop_toBottomOf="@id/usernameText"
         app:layout_constraintBottom_toTopOf="@id/passwordText">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:maxLines="1"
+            android:inputType="text"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,7 +124,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputPassword"
         style="@style/custom_input"
-        android:hint="@string/password"
         app:startIconDrawable="@drawable/password"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,10 +131,12 @@
         app:layout_constraintBottom_toTopOf="@id/button_login"
         app:layout_constraintTop_toBottomOf="@id/passwordText">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:maxLines="1"
+            android:inputType="textPassword"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -151,10 +144,10 @@
         android:id="@+id/button_login"
         android:layout_width="328dp"
         android:layout_height="50dp"
-        android:backgroundTint="@color/Green_1"
-        android:text="@string/login"
+        android:backgroundTint="@color/green_primary"
+        android:text="@string/login_capitalized"
         app:cornerRadius="10dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputPassword"
@@ -164,7 +157,7 @@
         android:id="@+id/layoutTextRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/button_login"
         app:layout_constraintStart_toStartOf="@id/button_login"
@@ -174,17 +167,20 @@
             android:id="@+id/textBelumPunyaAkun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Belum punya akun?" />
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:text="@string/don_t_have_an_account" />
 
         <TextView
             android:id="@+id/textRegister"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:clickable="true"
+            android:textSize="16sp"
             android:fontFamily="sans-serif-black"
-            android:text="REGISTER"
-            android:textColor="@color/Green_1" />
+            android:text="@string/register_capitalized"
+            android:textColor="@color/yellow_primary" />
     </LinearLayout>
 
     <ImageView

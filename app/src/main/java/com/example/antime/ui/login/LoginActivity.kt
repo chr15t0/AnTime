@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.antime.MainActivity
 import com.example.antime.R
 import com.example.antime.databinding.ActivityLoginBinding
+import com.example.antime.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -21,6 +22,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding.buttonLogin.setOnClickListener(){
             val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
+        binding.textRegister.setOnClickListener(){
+            val intent= Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
