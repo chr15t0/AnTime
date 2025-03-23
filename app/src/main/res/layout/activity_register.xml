@@ -5,11 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#F8F8F8"
+    android:background="#F8F8F8"
     tools:context=".ui.register.RegisterActivity">
 
     <LinearLayout
-        android:id="@+id/registerTextLayout"
+        android:id="@+id/textLayoutRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -57,7 +57,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/nameText"
+        android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name"
@@ -65,8 +65,8 @@
         android:textSize="16sp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif"
-        app:layout_constraintTop_toBottomOf="@id/registerTextLayout"
-        app:layout_constraintStart_toStartOf="@id/registerTextLayout"/>
+        app:layout_constraintTop_toBottomOf="@id/textLayoutRegister"
+        app:layout_constraintStart_toStartOf="@id/textLayoutRegister"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputName"
@@ -75,8 +75,8 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameText"
-        app:layout_constraintBottom_toTopOf="@id/usernameText">
+        app:layout_constraintTop_toBottomOf="@id/textName"
+        app:layout_constraintBottom_toTopOf="@id/textUsername">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_name"
             android:layout_width="match_parent"
@@ -88,7 +88,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/usernameText"
+        android:id="@+id/textUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
@@ -106,8 +106,8 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usernameText"
-        app:layout_constraintBottom_toTopOf="@id/passwordText">
+        app:layout_constraintTop_toBottomOf="@id/textUsername"
+        app:layout_constraintBottom_toTopOf="@id/textPassword">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_username"
             android:layout_width="match_parent"
@@ -119,7 +119,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/passwordText"
+        android:id="@+id/textPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password"
@@ -137,8 +137,8 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordText"
-        app:layout_constraintBottom_toTopOf="@id/konfirmasiPasswordText">
+        app:layout_constraintTop_toBottomOf="@id/textPassword"
+        app:layout_constraintBottom_toTopOf="@id/textKonfirmasiPassword">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
@@ -150,7 +150,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/konfirmasiPasswordText"
+        android:id="@+id/textKonfirmasiPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/konfirmasi_password"
@@ -168,7 +168,7 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/konfirmasiPasswordText"
+        app:layout_constraintTop_toBottomOf="@id/textKonfirmasiPassword"
         app:layout_constraintBottom_toTopOf="@id/button_register">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_konfirmasiPassword"

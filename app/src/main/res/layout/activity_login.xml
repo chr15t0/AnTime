@@ -5,11 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#F8F8F8"
+    android:background="#F8F8F8"
     tools:context=".ui.login.LoginActivity">
 
     <TextView
-        android:id="@+id/welcomeText"
+        android:id="@+id/textWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_capitalized"
@@ -22,14 +22,14 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
-        android:id="@+id/loginTextLayout"
+        android:id="@+id/textLayoutLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginEnd="16dp"
-        app:layout_constraintStart_toStartOf="@id/welcomeText"
-        app:layout_constraintTop_toBottomOf="@id/welcomeText">
+        app:layout_constraintStart_toStartOf="@id/textWelcome"
+        app:layout_constraintTop_toBottomOf="@id/textWelcome">
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/usernameText"
+        android:id="@+id/textUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
@@ -85,8 +85,8 @@
         android:textColor="@color/black"
         android:text="@string/username"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/loginTextLayout"
-        app:layout_constraintStart_toStartOf="@id/loginTextLayout"
+        app:layout_constraintTop_toBottomOf="@id/textLayoutLogin"
+        app:layout_constraintStart_toStartOf="@id/textLayoutLogin"
         app:layout_constraintBottom_toTopOf="@id/textInputUsername"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -96,8 +96,8 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usernameText"
-        app:layout_constraintBottom_toTopOf="@id/passwordText">
+        app:layout_constraintTop_toBottomOf="@id/textUsername"
+        app:layout_constraintBottom_toTopOf="@id/textPassword">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_username"
             android:layout_width="match_parent"
@@ -109,7 +109,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/passwordText"
+        android:id="@+id/textPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
@@ -128,8 +128,8 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_login"
-        app:layout_constraintTop_toBottomOf="@id/passwordText">
+        app:layout_constraintBottom_toTopOf="@id/buttonLogin"
+        app:layout_constraintTop_toBottomOf="@id/textPassword">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
@@ -141,7 +141,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_login"
+        android:id="@+id/buttonLogin"
         android:layout_width="328dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/green_primary"
@@ -159,9 +159,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@id/button_login"
-        app:layout_constraintStart_toStartOf="@id/button_login"
-        app:layout_constraintTop_toBottomOf="@id/button_login">
+        app:layout_constraintEnd_toEndOf="@id/buttonLogin"
+        app:layout_constraintStart_toStartOf="@id/buttonLogin"
+        app:layout_constraintTop_toBottomOf="@id/buttonLogin">
 
         <TextView
             android:id="@+id/textBelumPunyaAkun"
