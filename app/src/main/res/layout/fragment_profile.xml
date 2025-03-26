@@ -90,21 +90,21 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/textName"
+                android:id="@+id/textUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Name"
+                android:text="@string/username"
                 android:textColor="@color/black"
                 android:textSize="48sp"
                 android:layout_marginStart="16dp" />
 
             <TextView
-                android:id="@+id/textUsername"
+                android:id="@+id/textEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Username"
+                android:text="@string/email"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginStart="16dp" />
@@ -112,10 +112,10 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_ChangeName"
+        android:id="@+id/btn_ChangeUserame"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:text="@string/change_name"
+        android:text="@string/change_username"
         style="@style/custom_button"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@id/layout_AccountName"
@@ -123,14 +123,14 @@
         app:layout_constraintTop_toBottomOf="@id/layout_AccountName" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_ChangeUsername"
+        android:id="@+id/btn_ChangeEmail"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:text="@string/change_username"
+        android:text="@string/change_email"
         style="@style/custom_button"
-        app:layout_constraintEnd_toEndOf="@id/btn_ChangeName"
-        app:layout_constraintStart_toStartOf="@id/btn_ChangeName"
-        app:layout_constraintTop_toBottomOf="@id/btn_ChangeName" />
+        app:layout_constraintEnd_toEndOf="@id/btn_ChangeUserame"
+        app:layout_constraintStart_toStartOf="@id/btn_ChangeUserame"
+        app:layout_constraintTop_toBottomOf="@id/btn_ChangeUserame" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_ChangePassword"
@@ -138,11 +138,12 @@
         android:layout_height="80dp"
         android:text="@string/change_password"
         style="@style/custom_button"
-        app:layout_constraintEnd_toEndOf="@id/btn_ChangeUsername"
-        app:layout_constraintStart_toStartOf="@id/btn_ChangeUsername"
-        app:layout_constraintTop_toBottomOf="@id/btn_ChangeUsername" />
+        app:layout_constraintEnd_toEndOf="@id/btn_ChangeEmail"
+        app:layout_constraintStart_toStartOf="@id/btn_ChangeEmail"
+        app:layout_constraintTop_toBottomOf="@id/btn_ChangeEmail" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log Out"

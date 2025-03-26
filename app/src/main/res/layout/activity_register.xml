@@ -57,47 +57,16 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="sans-serif"
-        app:layout_constraintTop_toBottomOf="@id/textLayoutRegister"
-        app:layout_constraintStart_toStartOf="@id/textLayoutRegister"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputName"
-        style="@style/custom_input"
-        app:startIconDrawable="@drawable/ic_account_circle_24"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textName"
-        app:layout_constraintBottom_toTopOf="@id/textUsername">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:maxLines="1"
-            android:inputType="text"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
         android:id="@+id/textUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif"
-        app:layout_constraintTop_toBottomOf="@id/textInputName"
-        app:layout_constraintStart_toStartOf="@id/textInputName"/>
+        app:layout_constraintTop_toBottomOf="@id/textLayoutRegister"
+        app:layout_constraintStart_toStartOf="@id/textLayoutRegister"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputUsername"
@@ -107,14 +76,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textUsername"
-        app:layout_constraintBottom_toTopOf="@id/textPassword">
+        app:layout_constraintBottom_toTopOf="@id/textEmail">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_username"
+            android:id="@+id/edt_Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:maxLines="1"
             android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        app:layout_constraintTop_toBottomOf="@id/textInputUsername"
+        app:layout_constraintStart_toStartOf="@id/textInputUsername"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputEmail"
+        style="@style/custom_input"
+        app:startIconDrawable="@drawable/ic_account_circle_24"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textEmail"
+        app:layout_constraintBottom_toTopOf="@id/textPassword">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:maxLines="1"
+            android:inputType="textEmailAddress"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,13 +127,13 @@
         android:textSize="16sp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
-        app:layout_constraintTop_toBottomOf="@id/textInputUsername"
-        app:layout_constraintStart_toStartOf="@id/textInputUsername"/>
+        app:layout_constraintTop_toBottomOf="@id/textInputEmail"
+        app:layout_constraintStart_toStartOf="@id/textInputEmail"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputPassword"
         style="@style/custom_input"
-        app:startIconDrawable="@drawable/ic_account_circle_24"
+        app:startIconDrawable="@drawable/password"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +164,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputKonfirmasiPassword"
         style="@style/custom_input"
-        app:startIconDrawable="@drawable/ic_account_circle_24"
+        app:startIconDrawable="@drawable/password"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

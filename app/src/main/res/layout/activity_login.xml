@@ -83,14 +83,14 @@
         android:fontFamily="sans-serif"
         android:textSize="16sp"
         android:textColor="@color/black"
-        android:text="@string/username"
+        android:text="@string/email"
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@id/textLayoutLogin"
         app:layout_constraintStart_toStartOf="@id/textLayoutLogin"
-        app:layout_constraintBottom_toTopOf="@id/textInputUsername"/>
+        app:layout_constraintBottom_toTopOf="@id/textInputEmail"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputUsername"
+        android:id="@+id/textInputEmail"
         style="@style/custom_input"
         app:startIconDrawable="@drawable/ic_account_circle_24"
         android:layout_marginTop="12dp"
@@ -99,12 +99,11 @@
         app:layout_constraintTop_toBottomOf="@id/textUsername"
         app:layout_constraintBottom_toTopOf="@id/textPassword">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_username"
+            android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:maxLines="1"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,8 +116,8 @@
         android:textColor="@color/black"
         android:text="@string/password"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textInputUsername"
-        app:layout_constraintStart_toStartOf="@id/textInputUsername"
+        app:layout_constraintTop_toBottomOf="@id/textInputEmail"
+        app:layout_constraintStart_toStartOf="@id/textInputEmail"
         app:layout_constraintBottom_toTopOf="@id/textInputPassword"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -147,11 +146,27 @@
         android:backgroundTint="@color/green_primary"
         android:text="@string/login_capitalized"
         app:cornerRadius="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputPassword"
-        app:layout_constraintBottom_toTopOf="@id/layoutTextRegister"/>
+        app:layout_constraintBottom_toTopOf="@id/buttonLogin"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/button_LoginGoogle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#F2F2F2"
+        android:layout_marginTop="12dp"
+        android:text="Sign in with Google"
+        android:textSize="14sp"
+        android:textColor="#1F1F1F"
+        app:iconTint="@null"
+        app:icon="@drawable/android_neutral_sq_na"
+        app:layout_constraintTop_toBottomOf="@id/buttonLogin"
+        app:layout_constraintBottom_toTopOf="@id/layoutTextRegister"
+        app:layout_constraintStart_toStartOf="@id/buttonLogin"
+        app:layout_constraintEnd_toEndOf="@id/buttonLogin"/>
 
     <LinearLayout
         android:id="@+id/layoutTextRegister"
@@ -159,9 +174,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@id/buttonLogin"
-        app:layout_constraintStart_toStartOf="@id/buttonLogin"
-        app:layout_constraintTop_toBottomOf="@id/buttonLogin">
+        app:layout_constraintEnd_toEndOf="@id/button_LoginGoogle"
+        app:layout_constraintStart_toStartOf="@id/button_LoginGoogle"
+        app:layout_constraintTop_toBottomOf="@id/button_LoginGoogle">
 
         <TextView
             android:id="@+id/textBelumPunyaAkun"

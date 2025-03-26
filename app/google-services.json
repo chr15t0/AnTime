@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "354872117704",
+    "project_id": "antime-9d5db",
+    "storage_bucket": "antime-9d5db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354872117704:android:b00bbbb302ed0d32dc18fd",
+        "android_client_info": {
+          "package_name": "com.example.antime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354872117704-pd3jq7sp5jpmqp6h0gi16jdv3nr66pe5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.antime",
+            "certificate_hash": "f31c0c7827c20bc81e965ff205a2e715aef48aa7"
+          }
+        },
+        {
+          "client_id": "354872117704-9c2j6tqale5d2bpagrggru64ahstrqie.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpYsLAwW1yqUlgkXRj1LfwC-RtO7ysXXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354872117704-9c2j6tqale5d2bpagrggru64ahstrqie.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -21,4 +21,7 @@
     <string name="password_updated">Password Updated!</string>
     <string name="ok">OK</string>
     <string name="passwordUpdatedDescription">Your password has been updated successfully</string>
+    <string name="email">Email</string>
+    <string name="change_email">Change Email</string>
+    <string name="your_web_id">354872117704-9c2j6tqale5d2bpagrggru64ahstrqie.apps.googleusercontent.com</string>
 </resources>
