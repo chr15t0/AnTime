@@ -2,10 +2,12 @@ package com.example.antime.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.fragment.app.Fragment
@@ -15,6 +17,7 @@ import com.example.antime.databinding.FragmentProfileBinding
 import com.example.antime.ui.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 
@@ -37,7 +40,6 @@ class ProfileFragment : Fragment() {
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         auth = Firebase.auth
 
 //        val textView: TextView = binding.textNotifications
@@ -49,6 +51,18 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val user = auth.currentUser
+        val db = Firebase.firestore
+        db.collection("users").document(user?.uid.toString()).get()
+            .addOnSuccessListener {document->
+                binding.textUsername.text = document.getString("username")
+                binding.textEmail.text = document.getString("email")
+            }
+            .addOnFailureListener{ e ->
+                Log.w(TAG, "Error getting user data from firebase Document", e)
+                Toast.makeText(requireContext(),"Error getting user data",Toast.LENGTH_LONG).show()
+
+            }
         binding.btnLogout.setOnClickListener{
             lifecycleScope.launch {
                 val credentialManager = CredentialManager.create(requireContext())
@@ -64,5 +78,9 @@ class ProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "ProfileFragment"
     }
 }

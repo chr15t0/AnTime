@@ -11,7 +11,7 @@
     <string name="username">Username</string>
     <string name="register_capitalized">REGISTER</string>
     <string name="name">Name</string>
-    <string name="konfirmasi_password">Konfirmasi Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="don_t_have_an_account">Don\'t have an Account?</string>
     <string name="welcome_back">Welcome back,</string>
     <string name="day">Day</string>
@@ -24,4 +24,61 @@
     <string name="email">Email</string>
     <string name="change_email">Change Email</string>
     <string name="your_web_id">354872117704-9c2j6tqale5d2bpagrggru64ahstrqie.apps.googleusercontent.com</string>
+    <string name="invalid_email">Invalid email address</string>
+    <string name="invalid_password_length">Password should be 8 characters long!</string>
+    <string name="add_activity">Add Activity</string>
+    <string name="generate_schedule">Generate schedule</string>
+
+
+    <string-array name="pic_array">
+        <item>Christoffel Daniel Yesaya Tambunan</item>
+        <item>David Kevin Handel Hutabarat</item>
+        <item>Fenny Julistine Tarigan</item>
+        <item>Threesna Sharfina</item>
+    </string-array>
+
+    <string-array name="programmer_array">
+        <item>Fathurrahman</item>
+        <item>Said Muhammad Mazaya</item>
+        <item>Wildan Taufik Wibowo Nasution</item>
+    </string-array>
+
+    <string-array name="prodi_array">
+        <item>Pilih Program Studi</item>
+        <item>D-3 Akuntansi</item>
+        <item>D-3 Keuangan</item>
+        <item>D-3 Kesekretariatan</item>
+        <item>D-3 Perjalanan Wisata</item>
+        <item>D-3 Bahasa Inggris</item>
+        <item>D-3 Bahasa Jepang</item>
+        <item>D-3 Perpustakaan</item>
+        <item>D-3 Kimia</item>
+        <item>D-3 Statistika</item>
+        <item>D-3 Fisika</item>
+        <item>D-3 Metrologi dan Instrumentasi</item>
+        <item>D-3 Teknik Informatika</item>
+        <item>D-3 Administrasi Perpajakan</item>
+        <item>D-3 Analisis Farmasi dan Makanan</item>
+        <item>Sarjana Terapan Statistika</item>
+        <item>Sarjana Terapan Teknologi Rekayasa Instrumentasi</item>
+        <item>Sarjana Terapan Perbankan dan Keuangan</item>
+        <item>Sarjana Terapan Manajemen Bisnis Pariwisata</item>
+        <item>Sarjana Terapan Kimia Terapan</item>
+        <item>Sarjana Terapan Akuntansi Sektor Publik</item>
+        <item>Sarjana Terapan Administasi Perkantoran Digital</item>
+        <item>S-1 Sosiologi</item>
+        <item>S-1 Ilmu Politik</item>
+        <item>S-1 Ilmu Komunikasi</item>
+        <item>S-1 Ilmu Kesejahteraan Sosial</item>
+        <item>S-1 Ilmu Administrasi Bisnis</item>
+        <item>S-1 Ilmu Administrasi Publik</item>
+        <item>S-1 Antropologi Sosial</item>
+        <item>S-2 Sosiologi</item>
+        <item>S-2 Ilmu Politik</item>
+        <item>S-2 Ilmu Komunikasi</item>
+        <item>S-2 Ilmu Administrasi Publik</item>
+        <item>S-2 Studi Pembangunan</item>
+        <item>S-3 Studi Pembangunan</item>
+        <item>S-3 Ilmu Komunikasi</item>
+    </string-array>
 </resources>
