@@ -131,8 +131,21 @@ class DashboardFragment : Fragment() {
     }
 
     private fun saveToFirestore(user: FirebaseUser?) {
-        var schedule = hashMapOf(
-            "activities" to listActivities
+        val activitiesMap = hashMapOf<String,Map<String,String>>()
+
+        for (i in 0 until listActivities.size){
+            val activityKey = "Activity ${i+1}"
+            val activity = listActivities[i]
+            val activityData = mapOf(
+                "Prodi" to activity.prodi,
+                "Pic" to activity.pic,
+                "Programmer" to activity.programmer
+            )
+            activitiesMap[activityKey] = activityData
+        }
+
+        val schedule = hashMapOf(
+            "Activities" to activitiesMap
         )
         db.collection("users").document(user?.uid.toString())
             .collection("schedules").document("test").set(schedule)
@@ -152,15 +165,15 @@ class DashboardFragment : Fragment() {
             .collection("schedules").document("test").get()
             .addOnSuccessListener { document ->
                 // Directly retrieve activities without checking document existence
-                val activitiesList = document.get("activities") as? List<Map<String, Any>> ?: emptyList()
+                val activitiesMap = document.get("Activities") as? Map<String, Map<String, String>> ?: emptyMap()
 
                 val scheduleText = StringBuilder()
-                for ((index, activity) in activitiesList.withIndex()) {
-                    val prodi = activity["prodi"] as? String ?: "Unknown"
-                    val pic = activity["pic"] as? String ?: "Unknown"
-                    val programmer = activity["programmer"] as? String ?: "Unknown"
+                for ((activityKey, activityDetails) in activitiesMap) {
+                    val prodi = activityDetails["Prodi"]?: "Unknown"
+                    val pic = activityDetails["Pic"]?: "Unknown"
+                    val programmer = activityDetails["Programmer"] ?: "Unknown"
 
-                    scheduleText.append("Activity ${index + 1}:\n")
+                    scheduleText.append("$activityKey\n")
                         .append("Prodi: $prodi\n")
                         .append("PIC: $pic\n")
                         .append("Programmer: $programmer\n\n")
