@@ -168,8 +168,9 @@
         android:layout_gravity="bottom"
         android:paddingTop="50dp"
         android:paddingEnd="134dp"
-        android:alpha="0.3"
+        android:alpha="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

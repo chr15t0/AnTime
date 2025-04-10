@@ -28,6 +28,10 @@
     <string name="invalid_password_length">Password should be 8 characters long!</string>
     <string name="add_activity">Add Activity</string>
     <string name="generate_schedule">Generate schedule</string>
+    <string name="my_tasks">My Tasks</string>
+    <string name="to_do_list">To-Do List</string>
+    <string name="_0">0</string>
+    <string name="completed">Completed</string>
 
 
     <string-array name="pic_array">

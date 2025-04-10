@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.antime.MainActivity
 import com.example.antime.R
+import com.example.antime.algorithm.RankBasedAS
 import com.example.antime.databinding.FormAddActivityBinding
 import com.example.antime.databinding.FragmentDashboardBinding
 import com.example.antime.ui.Activities
@@ -69,7 +70,15 @@ class DashboardFragment : Fragment() {
 
         binding.btnGenerateSchedule.setOnClickListener{
             if(checkifValidandRead()){
-                saveToFirestore(user)
+//                saveToFirestore(user)
+                val scheduler = RankBasedAS(listActivities)
+                val results = scheduler.schedule()
+                Log.d("GlobalBest: ",results.toString())
+                results.forEach {
+                    Log.d("ASRANK_RESULT", "${it.activities.prodi} - ${it.activities.pic}/${it.activities.programmer} scheduled on ${it.day} at ${it.startHour} in ${it.room}")
+                }
+
+                Toast.makeText(requireContext(), "Scheduling done! Check Logcat.", Toast.LENGTH_SHORT).show()
             }
         }
     }

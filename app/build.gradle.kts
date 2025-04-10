@@ -63,4 +63,8 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
     implementation (libs.firebase.auth.ktx)
     implementation (libs.play.services.auth)
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+    implementation(libs.glide)
 }
