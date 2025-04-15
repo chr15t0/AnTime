@@ -4,38 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:background="#F8F8F8"
+    android:paddingTop="?attr/actionBarSize"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize"
-    tools:context=".ui.detailDailyActivities.DetailDailyActivity">
+    tools:context=".ui.todoList.ToDoListActivity">
 
     <TextView
-        android:id="@+id/text_day"
+        android:id="@+id/text_ToDoList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="sans-serif"
-        android:textColor="#2c673c"
+        android:textColor="#f2a33c"
         android:textSize="48sp"
         android:textStyle="bold"
-        tools:text="Day"
+        android:text="@string/to_do_list"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="center"
-        android:src="@drawable/bg_design"
-        android:paddingTop="50dp"
-        android:paddingEnd="134dp"
-        android:alpha="0.5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_schedule"
+        android:id="@+id/rv_ToDoList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -45,11 +33,19 @@
         tools:itemCount="5"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/text_day"
+        app:layout_constraintTop_toBottomOf="@id/text_ToDoList"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat = "@drawable/ic_check"
+        app:fabSize="normal"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

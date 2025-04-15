@@ -1,13 +1,10 @@
-package com.example.antime.ui
+package com.example.antime.ui.detailDailyActivities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.antime.R
+import com.example.antime.algorithm.Schedule
 import com.example.antime.databinding.ActivityDetailDailyBinding
-import java.util.zip.Inflater
 
 class DetailDailyActivity : AppCompatActivity() {
     private lateinit var  binding : ActivityDetailDailyBinding
@@ -18,10 +15,20 @@ class DetailDailyActivity : AppCompatActivity() {
         binding = ActivityDetailDailyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.testText.text = intent.getStringExtra("Extra_text")
+        binding.textDay.text = intent.getStringExtra(SCHEDULE)
+        var scheduleList = intent.getParcelableArrayListExtra<Schedule>(SCHEDULE_LIST) ?: emptyList()
+        setScheduleAdapter(scheduleList)
+    }
+
+    private fun setScheduleAdapter(scheduleList: List<Schedule>) {
+        val adapter = ScheduleAdapter()
+        adapter.submitList(scheduleList)
+        binding.rvSchedule.adapter = adapter
     }
 
     companion object{
-        const val EXTRA_TEXT = "Extra_text"
+        const val SCHEDULE = "SCHEDULE"
+        const val SCHEDULE_LIST = "SCHEDULE_LIST"
+
     }
 }

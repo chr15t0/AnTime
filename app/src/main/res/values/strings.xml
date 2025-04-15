@@ -35,6 +35,7 @@
 
 
     <string-array name="pic_array">
+        <item>Pilih PIC</item>
         <item>Christoffel Daniel Yesaya Tambunan</item>
         <item>David Kevin Handel Hutabarat</item>
         <item>Fenny Julistine Tarigan</item>
@@ -42,6 +43,7 @@
     </string-array>
 
     <string-array name="programmer_array">
+        <item>Pilih Programmer</item>
         <item>Fathurrahman</item>
         <item>Said Muhammad Mazaya</item>
         <item>Wildan Taufik Wibowo Nasution</item>

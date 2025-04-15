@@ -1,10 +1,5 @@
 package com.example.antime.algorithm
 
-import com.example.antime.ui.Activities
-import com.example.antime.ui.Assignment
-import com.example.antime.ui.days
-import com.example.antime.ui.rooms
-import com.example.antime.ui.timeSlots
 import kotlin.math.pow
 import kotlin.random.Random
 

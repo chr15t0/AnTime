@@ -1,7 +1,6 @@
 package com.example.antime.ui.dashboard
 
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -17,18 +16,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.antime.MainActivity
 import com.example.antime.R
 import com.example.antime.algorithm.RankBasedAS
 import com.example.antime.databinding.FormAddActivityBinding
 import com.example.antime.databinding.FragmentDashboardBinding
-import com.example.antime.ui.Activities
-import com.example.antime.ui.DetailDailyActivity
+import com.example.antime.algorithm.Activities
+import com.example.antime.algorithm.Assignment
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
+import androidx.core.view.isEmpty
 
 class DashboardFragment : Fragment() {
 
@@ -70,11 +69,11 @@ class DashboardFragment : Fragment() {
 
         binding.btnGenerateSchedule.setOnClickListener{
             if(checkifValidandRead()){
-//                saveToFirestore(user)
                 val scheduler = RankBasedAS(listActivities)
-                val results = scheduler.schedule()
-                Log.d("GlobalBest: ",results.toString())
-                results.forEach {
+                val resultRankedAS = scheduler.schedule()
+                saveToFirestore(user,resultRankedAS)
+                Log.d("GlobalBest: ",resultRankedAS.toString())
+                resultRankedAS.forEach {
                     Log.d("ASRANK_RESULT", "${it.activities.prodi} - ${it.activities.pic}/${it.activities.programmer} scheduled on ${it.day} at ${it.startHour} in ${it.room}")
                 }
 
@@ -112,12 +111,14 @@ class DashboardFragment : Fragment() {
     private fun checkifValidandRead(): Boolean {
         listActivities.clear()
         var result = true
+        if (binding.layoutListActivities.childCount == null || binding.layoutListActivities.isEmpty()){
+            Log.e("Validation", "No activities found in layoutListActivities")
+            Toast.makeText(requireContext(), "Please add at least one activity.", Toast.LENGTH_LONG).show()
+            return false
+        }
 
         for(i in 0 until  binding.layoutListActivities.childCount){
-            Log.d("test",i.toString())
-
             val activities= binding.layoutListActivities.getChildAt(i)
-
             val prodi = activities.findViewById<Spinner>(R.id.spinnerProdi)
             val pic = activities.findViewById<Spinner>(R.id.spinnerPIC)
             val programmer = activities.findViewById<Spinner>(R.id.spinnerProgrammer)
@@ -128,36 +129,42 @@ class DashboardFragment : Fragment() {
                 result = false
             }
 
-            listActivities.add(Activities(
+            listActivities.add(
+                Activities(
                 prodi.selectedItem.toString(),
                 pic.selectedItem.toString(),
                 programmer.selectedItem.toString()
-            ))
+            )
+            )
             Log.d("test",listActivities.toString())
         }
 
         return result
     }
 
-    private fun saveToFirestore(user: FirebaseUser?) {
-        val activitiesMap = hashMapOf<String,Map<String,String>>()
+    private fun saveToFirestore(user: FirebaseUser?, resultRankedAS : List<Assignment>) {
+        val activitiesMap = hashMapOf<String,ArrayList<Map<String,String>>>()
 
-        for (i in 0 until listActivities.size){
-            val activityKey = "Activity ${i+1}"
-            val activity = listActivities[i]
+        for (activity in resultRankedAS){
             val activityData = mapOf(
-                "Prodi" to activity.prodi,
-                "Pic" to activity.pic,
-                "Programmer" to activity.programmer
+                "Prodi" to activity.activities.prodi,
+                "Pic" to activity.activities.pic,
+                "Programmer" to activity.activities.programmer,
+                "Room" to activity.room,
+                "Start Hour" to activity.startHour.toString() + ":00",
+                "End Hour" to (activity.startHour + 2).toString() + ":00"
             )
-            activitiesMap[activityKey] = activityData
+            if(!activitiesMap.containsKey(activity.day)){
+                activitiesMap[activity.day]= ArrayList()
+            }
+            activitiesMap[activity.day]?.add(activityData)
         }
 
         val schedule = hashMapOf(
             "Activities" to activitiesMap
         )
         db.collection("users").document(user?.uid.toString())
-            .collection("schedules").document("test").set(schedule)
+            .collection("schedules").document("daily schedule").set(schedule)
             .addOnSuccessListener {
                 Log.d("Store Schedule", "Successfully added Schedule to user's Firestore document")
                 showDialogSchedule(user)
@@ -171,21 +178,34 @@ class DashboardFragment : Fragment() {
 
     private fun showDialogSchedule(user: FirebaseUser?) {
         db.collection("users").document(user?.uid.toString())
-            .collection("schedules").document("test").get()
+            .collection("schedules").document("daily schedule").get()
             .addOnSuccessListener { document ->
                 // Directly retrieve activities without checking document existence
-                val activitiesMap = document.get("Activities") as? Map<String, Map<String, String>> ?: emptyMap()
+                var activitiesMap = document.get("Activities") as? Map<String, ArrayList<Map<String, String>>> ?: emptyMap()
 
                 val scheduleText = StringBuilder()
-                for ((activityKey, activityDetails) in activitiesMap) {
-                    val prodi = activityDetails["Prodi"]?: "Unknown"
-                    val pic = activityDetails["Pic"]?: "Unknown"
-                    val programmer = activityDetails["Programmer"] ?: "Unknown"
 
-                    scheduleText.append("$activityKey\n")
-                        .append("Prodi: $prodi\n")
-                        .append("PIC: $pic\n")
-                        .append("Programmer: $programmer\n\n")
+                //sort days
+                val daysOrder = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+                activitiesMap = activitiesMap.toSortedMap(compareBy { daysOrder.indexOf(it) })
+
+                activitiesMap?.forEach { (day, activities) ->
+                    scheduleText.append("$day\n")
+                    activities.forEach { activity ->
+                        val prodi = activity["Prodi"] ?: "Unknown"
+                        val pic = activity["Pic"] ?: "Unknown"
+                        val programmer = activity["Programmer"] ?: "Unknown"
+                        val room = activity["Room"] ?: "Unknown"
+                        val startHour = activity["Start Hour"] ?: "Unknown"
+                        val endHour = activity["End Hour"] ?: "Unknown"
+
+                        scheduleText.append("Prodi: $prodi\n")
+                            .append("PIC: $pic\n")
+                            .append("Programmer: $programmer\n")
+                            .append("Room: $room\n")
+                            .append("Start Hour: $startHour\n")
+                            .append("End Hour: $endHour\n\n")
+                    }
                 }
 
                 // Set the retrieved schedule data into the dialog's TextView
