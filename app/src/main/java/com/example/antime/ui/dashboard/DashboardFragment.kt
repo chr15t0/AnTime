@@ -1,6 +1,7 @@
 package com.example.antime.ui.dashboard
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,10 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.antime.R
@@ -28,6 +31,14 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import androidx.core.view.isEmpty
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.example.antime.algorithm.DailySchedule
+import com.example.antime.algorithm.Schedule
+import com.example.antime.ui.detailDailyActivities.DetailDailyActivity
+import com.example.antime.ui.detailDailyActivities.ScheduleAdapter
+import com.example.antime.ui.home.DaysAdapter
+import com.example.antime.ui.home.HomeFragment
 
 class DashboardFragment : Fragment() {
 
@@ -177,49 +188,111 @@ class DashboardFragment : Fragment() {
     }
 
     private fun showDialogSchedule(user: FirebaseUser?) {
+//        db.collection("users").document(user?.uid.toString())
+//            .collection("schedules").document("daily schedule").get()
+//            .addOnSuccessListener { document ->
+//                // Directly retrieve activities without checking document existence
+//                var activitiesMap = document.get("Activities") as? Map<String, ArrayList<Map<String, String>>> ?: emptyMap()
+//
+//                val scheduleText = StringBuilder()
+//
+//                //sort days
+//                val daysOrder = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+//                activitiesMap = activitiesMap.toSortedMap(compareBy { daysOrder.indexOf(it) })
+//
+//                activitiesMap?.forEach { (day, activities) ->
+//                    scheduleText.append("$day\n")
+//                    activities.forEach { activity ->
+//                        val prodi = activity["Prodi"] ?: "Unknown"
+//                        val pic = activity["Pic"] ?: "Unknown"
+//                        val programmer = activity["Programmer"] ?: "Unknown"
+//                        val room = activity["Room"] ?: "Unknown"
+//                        val startHour = activity["Start Hour"] ?: "Unknown"
+//                        val endHour = activity["End Hour"] ?: "Unknown"
+//
+//                        scheduleText.append("Prodi: $prodi\n")
+//                            .append("PIC: $pic\n")
+//                            .append("Programmer: $programmer\n")
+//                            .append("Room: $room\n")
+//                            .append("Start Hour: $startHour\n")
+//                            .append("End Hour: $endHour\n\n")
+//                    }
+//                }
+//
+//                // Set the retrieved schedule data into the dialog's TextView
+//                val textSchedule = dialog.findViewById<TextView>(R.id.textSchedule)
+//                textSchedule.text = scheduleText.toString()
+//            }
+//            .addOnFailureListener { e ->
+//                Log.e("Firestore", "Failed to fetch schedule", e)
+//                Toast.makeText(requireContext(), "Error fetching schedule", Toast.LENGTH_LONG).show()
+//            }
+        dialog.setContentView(R.layout.dialog_schedule)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+
+        val btnOk : Button = dialog.findViewById(R.id.btn_ok)
+        btnOk.setOnClickListener{
+            findNavController().navigate(R.id.action_navigation_dashboard_to_navigation_home)
+            dialog.dismiss()
+        }
+
         db.collection("users").document(user?.uid.toString())
             .collection("schedules").document("daily schedule").get()
             .addOnSuccessListener { document ->
                 // Directly retrieve activities without checking document existence
                 var activitiesMap = document.get("Activities") as? Map<String, ArrayList<Map<String, String>>> ?: emptyMap()
-
-                val scheduleText = StringBuilder()
-
-                //sort days
                 val daysOrder = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-                activitiesMap = activitiesMap.toSortedMap(compareBy { daysOrder.indexOf(it) })
+                val sortedActivities = activitiesMap.toSortedMap(compareBy { daysOrder.indexOf(it)})
+                    .mapValues { entry ->
+                        entry.value.map { activity ->
+                            val prodi = activity["Prodi"] ?: "Unknown"
+                            val pic = activity["Pic"] ?: "Unknown"
+                            val programmer = activity["Programmer"] ?: "Unknown"
+                            val room = activity["Room"] ?: "Unknown"
+                            val startHour = activity["Start Hour"] ?: "Unknown"
+                            val endHour = activity["End Hour"] ?: "Unknown"
+                            Schedule(entry.key, prodi, pic, programmer, room, startHour, endHour)
+                        }
+                    }
+                val adapterData = sortedActivities.map { (day,schedule)->
+                    DailySchedule(
+                        day = day,
+                        activities = schedule
+                    )
+                }
+                val mondayAdapter = ScheduleAdapter()
+                val tuesdayAdapter = ScheduleAdapter()
+                val wednesdayAdapter = ScheduleAdapter()
+                val thursdayAdapter = ScheduleAdapter()
+                val fridayAdapter = ScheduleAdapter()
 
-                activitiesMap?.forEach { (day, activities) ->
-                    scheduleText.append("$day\n")
-                    activities.forEach { activity ->
-                        val prodi = activity["Prodi"] ?: "Unknown"
-                        val pic = activity["Pic"] ?: "Unknown"
-                        val programmer = activity["Programmer"] ?: "Unknown"
-                        val room = activity["Room"] ?: "Unknown"
-                        val startHour = activity["Start Hour"] ?: "Unknown"
-                        val endHour = activity["End Hour"] ?: "Unknown"
+                val rv_monday: RecyclerView = dialog.findViewById(R.id.rv_scheduleMonday)
+                val rv_tuesday: RecyclerView = dialog.findViewById(R.id.rv_scheduleTuesday)
+                val rv_wednesday: RecyclerView = dialog.findViewById(R.id.rv_scheduleWednesday)
+                val rv_thursday: RecyclerView = dialog.findViewById(R.id.rv_scheduleThursday)
+                val rv_friday: RecyclerView = dialog.findViewById(R.id.rv_scheduleFriday)
 
-                        scheduleText.append("Prodi: $prodi\n")
-                            .append("PIC: $pic\n")
-                            .append("Programmer: $programmer\n")
-                            .append("Room: $room\n")
-                            .append("Start Hour: $startHour\n")
-                            .append("End Hour: $endHour\n\n")
+                rv_monday.adapter = mondayAdapter
+                rv_tuesday.adapter = tuesdayAdapter
+                rv_wednesday.adapter = wednesdayAdapter
+                rv_thursday.adapter = thursdayAdapter
+                rv_friday.adapter = fridayAdapter
+
+                for (i in adapterData) {
+                    when (i.day) {
+                        "Monday" -> mondayAdapter.submitList(i.activities)
+                        "Tuesday" -> tuesdayAdapter.submitList(i.activities)
+                        "Wednesday" -> wednesdayAdapter.submitList(i.activities)
+                        "Thursday" -> thursdayAdapter.submitList(i.activities)
+                        "Friday" -> fridayAdapter.submitList(i.activities)
                     }
                 }
-
-                // Set the retrieved schedule data into the dialog's TextView
-                val textSchedule = dialog.findViewById<TextView>(R.id.textSchedule)
-                textSchedule.text = scheduleText.toString()
             }
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Failed to fetch schedule", e)
                 Toast.makeText(requireContext(), "Error fetching schedule", Toast.LENGTH_LONG).show()
             }
-
-        dialog.setContentView(R.layout.dialog_schedule)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
     }
 
     override fun onDestroyView() {

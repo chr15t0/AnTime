@@ -12,13 +12,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="colorOnSurfaceVariant">@color/green_primary</item>
+        <item name="colorOnSurfaceVariant">@color/white</item>
     </style>
 
     <style name="custom_input" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:textColorHint">@color/green_primary</item>
         <item name="hintTextColor">@color/green_primary</item>
-        <item name="boxStrokeColor">@color/green_primary</item>
+        <item name="boxStrokeColor">@color/white</item>
         <item name="boxStrokeWidth">2dp</item>
         <item name="boxCornerRadiusBottomEnd">10dp</item>
         <item name="boxCornerRadiusBottomStart">10dp</item>
@@ -43,5 +43,6 @@
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">#D1E5CE</item>
+
     </style>
 </resources>

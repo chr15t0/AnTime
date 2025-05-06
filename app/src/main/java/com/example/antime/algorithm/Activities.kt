@@ -35,6 +35,12 @@ data class DailySchedule(
     val activities : List<Schedule>
 ):Parcelable
 
+data class ToDoListData(
+    val id : String,
+    val ToDo: String,
+    var isDone : String
+)
+
 val days = listOf("Monday","Tuesday","Wednesday","Thursday","Friday")
 val rooms = listOf("Ruangan 1 Ditgrasi ","Ruangan 2 Ditgrasi")
 val timeSlots = listOf(8,10,13,15)

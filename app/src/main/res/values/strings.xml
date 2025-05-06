@@ -32,6 +32,16 @@
     <string name="to_do_list">To-Do List</string>
     <string name="_0">0</string>
     <string name="completed">Completed</string>
+    <string name="create_new_to_do_list">Create New To-Do List</string>
+    <string name="create">Create</string>
+    <string name="schedule_successfully_generated">Schedule Successfully Generated!</string>
+    <string name="successfully_generated_schedule_detail">You schedule has been successfully generated! You can now view your schedule at the home menu.</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="antime">AnTime</string>
+    <string name="already_have_an_account">Already have an Account?</string>
+    <string name="profile">Profile</string>
+    <string name="my_schedule">My Schedule</string>
+    <string name="log_out">Log Out</string>
 
 
     <string-array name="pic_array">

@@ -1,25 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
+    android:layout_width="match_parent"
     android:layout_height="700dp"
+    android:minWidth="350dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
     app:cardCornerRadius="15dp"
     app:cardElevation="50dp"
-    android:layout_gravity="center"
-    android:backgroundTint="@color/white">
+    android:backgroundTint="#F8F8F8">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
+
         <TextView
-            android:id="@+id/textSchedule"
+            android:id="@+id/text_ScheduleSuccessfullyGenerated"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/green_text"
+            android:text="@string/schedule_successfully_generated"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/text_ScheduleSuccessfullyGeneratedDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            android:textColor="@color/green_text"
+            android:text="@string/successfully_generated_schedule_detail"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_ScheduleSuccessfullyGenerated"/>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_ScheduleSuccessfullyGeneratedDescription"
+            app:layout_constraintBottom_toTopOf="@id/btn_ok">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/text_monday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro"
+                    android:includeFontPadding="false"
+                    android:textColor="#2c673c"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="Monday"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_scheduleMonday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:listitem="@layout/card_activity"
+                    android:orientation="vertical"
+                    tools:itemCount="5"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:visibility="visible"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintTop_toBottomOf="@id/text_monday"
+                    app:layout_constraintBottom_toTopOf="@id/text_tuesday"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/text_tuesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro"
+                    android:includeFontPadding="false"
+                    android:textColor="#2c673c"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="Tuesday"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_scheduleMonday"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_scheduleTuesday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:listitem="@layout/card_activity"
+                    android:orientation="vertical"
+                    tools:itemCount="5"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:visibility="visible"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintTop_toBottomOf="@id/text_tuesday"
+                    app:layout_constraintBottom_toTopOf="@id/text_Wednesday"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/text_Wednesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro"
+                    android:includeFontPadding="false"
+                    android:textColor="#2c673c"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="Wednesday"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_scheduleTuesday"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_scheduleWednesday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:listitem="@layout/card_activity"
+                    android:orientation="vertical"
+                    tools:itemCount="5"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:visibility="visible"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintTop_toBottomOf="@id/text_Wednesday"
+                    app:layout_constraintBottom_toTopOf="@id/text_Thursday"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/text_Thursday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro"
+                    android:includeFontPadding="false"
+                    android:textColor="#2c673c"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="Thursday"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_scheduleWednesday"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_scheduleThursday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:listitem="@layout/card_activity"
+                    android:orientation="vertical"
+                    tools:itemCount="5"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:visibility="visible"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintTop_toBottomOf="@id/text_Thursday"
+                    app:layout_constraintBottom_toTopOf="@id/text_Friday"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/text_Friday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro"
+                    android:includeFontPadding="false"
+                    android:textColor="#2c673c"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="Friday"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_scheduleThursday"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_scheduleFriday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:listitem="@layout/card_activity"
+                    android:orientation="vertical"
+                    tools:itemCount="5"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:visibility="visible"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintTop_toBottomOf="@id/text_Friday"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/green_text"
+            android:text="@string/ok"
+            android:backgroundTint="@color/green_light"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="@id/text_ScheduleSuccessfullyGeneratedDescription"
+            app:layout_constraintStart_toStartOf="@id/text_ScheduleSuccessfullyGeneratedDescription"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

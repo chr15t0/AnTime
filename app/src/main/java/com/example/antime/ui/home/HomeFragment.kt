@@ -18,6 +18,9 @@ import com.example.antime.algorithm.Activities
 import com.example.antime.algorithm.DailySchedule
 import com.example.antime.ui.detailDailyActivities.DetailDailyActivity
 import com.example.antime.algorithm.Schedule
+import com.example.antime.algorithm.ToDoListData
+import com.example.antime.ui.completed.CompletedActivity
+import com.example.antime.ui.todoList.ToDoListActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -69,16 +72,30 @@ class HomeFragment : Fragment() {
         db.collection("users").document(user?.uid.toString()).get()
             .addOnSuccessListener {document->
                 var username = document.getString("username")?.split(" ")
-                binding.textUsername.text = username?.get(0).toString() + "!"
-                Glide.with(this)
-                    .load(R.drawable.android_neutral_sq_na)
-                    .into(binding.imageUser)
+                binding.textUsernameHomeFragment.text = username?.get(0).toString() + "!"
+//                Glide.with(this)
+//                    .load(R.drawable.android_neutral_sq_na)
+//                    .into(binding.imageUser)
             }
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Failed to fetch user", e)
                 Toast.makeText(requireContext(), "Error fetching schedule", Toast.LENGTH_LONG).show()
             }
 
+        db.collection("users").document(user?.uid.toString()).collection("task").get()
+            .addOnSuccessListener {documents->
+                var jumlahToDo = 0
+                var jumlahCompleted = 0
+                for (document in documents.documents){
+                    if (document.getString("is done") == "false"){
+                        jumlahToDo+=1
+                    }else{
+                        jumlahCompleted+=1
+                    }
+                }
+                binding.tvJumlahToDoList.text = jumlahToDo.toString()
+                binding.tvJumlahCompleted.text = jumlahCompleted.toString()
+            }
 
         db.collection("users").document(user?.uid.toString())
             .collection("schedules").document("daily schedule").get()
@@ -110,30 +127,40 @@ class HomeFragment : Fragment() {
                 Log.e("Firestore", "Failed to fetch schedule", e)
                 Toast.makeText(requireContext(), "Error fetching schedule", Toast.LENGTH_LONG).show()
             }
-        binding.btnTest.setOnClickListener{
-//            val textTest= "Lisa blackpink is my bias"
-//            val detailDailyActivitiesIntent = Intent(requireContext(), DetailDailyActivity::class.java)
-//            detailDailyActivitiesIntent.putExtra(DetailDailyActivity.EXTRA_TEXT,textTest.toString())
-//            startActivity(detailDailyActivitiesIntent)
-
-
-            val testActivities = generateTestActivities()
-            val scheduler = RankBasedAS(testActivities)
-            val results = scheduler.schedule()
-
-            Log.d("GlobalBest: ",results.toString())
-
-            results.forEach {
-                Log.d("ASRANK_RESULT", "${it.activities.prodi} - ${it.activities.pic}/${it.activities.programmer} scheduled on ${it.day} at ${it.startHour} in ${it.room}")
-            }
+//        binding.btnTest.setOnClickListener{
+////            val textTest= "Lisa blackpink is my bias"
+////            val detailDailyActivitiesIntent = Intent(requireContext(), DetailDailyActivity::class.java)
+////            detailDailyActivitiesIntent.putExtra(DetailDailyActivity.EXTRA_TEXT,textTest.toString())
+////            startActivity(detailDailyActivitiesIntent)
 //
-            Toast.makeText(requireContext(), "Scheduling done! Check Logcat.", Toast.LENGTH_SHORT).show()
-//            Log.d("tanggal hari ini", LocalDate.now().toString())
-        }
+//
+//            val testActivities = generateTestActivities()
+//            val scheduler = RankBasedAS(testActivities)
+//            val results = scheduler.schedule()
+//
+//            Log.d("GlobalBest: ",results.toString())
+//
+//            results.forEach {
+//                Log.d("ASRANK_RESULT", "${it.activities.prodi} - ${it.activities.pic}/${it.activities.programmer} scheduled on ${it.day} at ${it.startHour} in ${it.room}")
+//            }
+////
+//            Toast.makeText(requireContext(), "Scheduling done! Check Logcat.", Toast.LENGTH_SHORT).show()
+////            Log.d("tanggal hari ini", LocalDate.now().toString())
+//        }
         val date = LocalDate.now().toString()
         val formatted = date.withDateFormat()
         binding.textDate.text = formatted
+
+        binding.cardToDoList.setOnClickListener{
+            val toDoListIntent = Intent(requireContext(),ToDoListActivity::class.java)
+            startActivity(toDoListIntent)
+        }
+        binding.cardCompletedTask.setOnClickListener{
+            val completedIntent = Intent(requireContext(), CompletedActivity::class.java)
+            startActivity(completedIntent)
+        }
     }
+
 
     private fun setAdapterRecyclerView(adapterData: List<DailySchedule>) {
         val adapter = DaysAdapter()

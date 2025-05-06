@@ -55,7 +55,8 @@ class ProfileFragment : Fragment() {
         val db = Firebase.firestore
         db.collection("users").document(user?.uid.toString()).get()
             .addOnSuccessListener {document->
-                binding.textUsername.text = document.getString("username")
+                binding.textEmail
+                binding.textUsernameProfileFragment.text = document.getString("username")
                 binding.textEmail.text = document.getString("email")
             }
             .addOnFailureListener{ e ->
