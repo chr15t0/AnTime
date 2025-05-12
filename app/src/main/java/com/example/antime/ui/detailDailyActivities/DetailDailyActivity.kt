@@ -17,6 +17,9 @@ class DetailDailyActivity : AppCompatActivity() {
 
         binding.textDay.text = intent.getStringExtra(SCHEDULE)
         var scheduleList = intent.getParcelableArrayListExtra<Schedule>(SCHEDULE_LIST) ?: emptyList()
+        val timeOrder = listOf("8:00","10:00","13:00","15:00")
+        val roomOrder = listOf("Ruangan 1 Ditgrasi ","Ruangan 2 Ditgrasi")
+        scheduleList = scheduleList.sortedWith(compareBy({ timeOrder.indexOf(it.startHour) }, {roomOrder.indexOf(it.room)}))
         setScheduleAdapter(scheduleList)
     }
 

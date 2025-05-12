@@ -243,7 +243,9 @@ class DashboardFragment : Fragment() {
                 // Directly retrieve activities without checking document existence
                 var activitiesMap = document.get("Activities") as? Map<String, ArrayList<Map<String, String>>> ?: emptyMap()
                 val daysOrder = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-                val sortedActivities = activitiesMap.toSortedMap(compareBy { daysOrder.indexOf(it)})
+                val timeOrder = listOf("8:00","10:00","13:00","15:00")
+                val roomOrder = listOf("Ruangan 1 Ditgrasi ","Ruangan 2 Ditgrasi")
+                val sortedActivities = activitiesMap.toSortedMap(compareBy ({daysOrder.indexOf(it)},{ timeOrder.indexOf(it) }, {roomOrder.indexOf(it)}))
                     .mapValues { entry ->
                         entry.value.map { activity ->
                             val prodi = activity["Prodi"] ?: "Unknown"

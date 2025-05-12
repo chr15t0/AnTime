@@ -28,7 +28,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:fontFamily="@font/sf_pro"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

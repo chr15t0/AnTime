@@ -93,15 +93,51 @@ class RankBasedAS(private val activities: List<Activities>) {
     }
 
     private fun evaluateSolution(solution: List<Assignment>): Double {
-        val score = solution.size * 10.0
-        return score
+        val violations = solution.sumOf { assignment ->
+            countViolations(assignment, solution)
+        }
+        return q / (1 + violations) // Higher score for fewer violations
     }
+
+    private fun countViolations(assignment: Assignment, solution: List<Assignment>): Int {
+        var violations = 0
+
+//        // Check for room conflicts
+//        if (solution.any {
+//                it != assignment &&
+//                        it.room == assignment.room &&
+//                        it.startHour == assignment.startHour &&
+//                        it.day == assignment.day
+//            }) {
+//            violations++
+//        }
+//
+//        // Check for PIC or programmer conflicts
+//        if (solution.any {
+//                it != assignment &&
+//                        (it.activities.pic == assignment.activities.pic || it.activities.programmer == assignment.activities.programmer) &&
+//                        it.startHour == assignment.startHour &&
+//                        it.day == assignment.day
+//            }) {
+//            violations++
+//        }
+        solution.filter { it!= assignment&&
+        it.day == assignment.day&&
+        it.startHour == assignment.startHour
+        }.forEach{conflict->
+            if (conflict.room == assignment.room) violations++
+            if (conflict.activities.pic==assignment.activities.pic) violations++
+            if (conflict.activities.programmer==assignment.activities.programmer) violations++
+        }
+        return violations
+    }
+
 
     private fun updatePheromone(topRanked: List<Pair<List<Assignment>, Double>>) {
         pheromone.entries.forEach{ pheromone[it.key] = it.value * (1-rho)}
 
         for ((rank, pair) in topRanked.withIndex()) {
-            val (assignments, score) = pair
+            val (assignments, _) = pair
             val delta = q * (rankFactor - rank)
             assignments.forEach {
                 val key = "${it.day}_${it.startHour}_${it.room}_${it.activities.pic}_${it.activities.programmer}"

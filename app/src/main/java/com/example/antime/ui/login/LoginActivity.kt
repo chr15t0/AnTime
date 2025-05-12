@@ -177,23 +177,6 @@ class LoginActivity : AppCompatActivity() {
     private fun insertNewUserGoogle(dataUser: HashMap<String, String?>) {
         //storing user data to firestore database
         val db = Firebase.firestore
-//        db.collection("users").document(dataUser["id"].toString()).get()
-//            .addOnSuccessListener { documentSnapshot->
-//                if (documentSnapshot.exists()){
-//                    Toast.makeText(this,"udah ada bang usernya kongrets",Toast.LENGTH_LONG).show()
-//                }else{
-//                    db.collection("users")
-//                        .document(dataUser["id"].toString())
-//                        .set(dataUser)
-//                        .addOnSuccessListener {  documentReference ->
-//                            Log.d(TAG, "Successfully added data to Firestore document")
-//                        }
-//                        .addOnFailureListener { e ->
-//                            Log.w(TAG, "Error adding data to Firestore document", e)
-//                        }
-//                }
-//            }
-
         db.collection("users")
             .document(dataUser["id"].toString())
             .set(dataUser)

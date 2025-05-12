@@ -35,8 +35,6 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var auth : FirebaseAuth
     private val schedule = mutableListOf<Schedule>()
@@ -47,21 +45,9 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         auth = Firebase.auth
-//        val username = db.runTransaction{ it.get(db.collection("users").document(user?.uid.toString())).getString("username") }
-
-//        Toast.makeText(requireContext(), username.toString(),Toast.LENGTH_LONG).show()
-//        binding.textUsername.text = username.toString()
-
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
         return root
     }
 
@@ -73,9 +59,6 @@ class HomeFragment : Fragment() {
             .addOnSuccessListener {document->
                 var username = document.getString("username")?.split(" ")
                 binding.textUsernameHomeFragment.text = username?.get(0).toString() + "!"
-//                Glide.with(this)
-//                    .load(R.drawable.android_neutral_sq_na)
-//                    .into(binding.imageUser)
             }
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Failed to fetch user", e)
@@ -181,23 +164,6 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun generateTestActivities(): List<Activities> {
-        return listOf(
-            Activities("TI", "david", "said"),
-            Activities("SI", "christo", "said"), // conflict: same programmer
-            Activities("MI", "fenny", "wildan"),
-            Activities("TI", "nana", "fathur"),
-            Activities("TI", "david", "wildan"), // conflict: same pic
-            Activities("SI", "fenny", "said"),   // conflict: same programmer
-            Activities("MI", "nana", "wildan"),  // conflict: same programmer
-            Activities("TI", "david", "fathur"), // conflict: same pic
-            Activities("SI", "christo", "fathur"),
-            Activities("MI", "fenny", "said"),   // conflict: same programmer
-            Activities("TI", "nana", "wildan"),  // conflict: duplicate
-            Activities("SI", "christo", "said") // conflict: same programmer
-        )
     }
 
     private fun String.withDateFormat(): String {
