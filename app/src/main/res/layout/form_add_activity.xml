@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    
+<!--    Program Studi Spinner-->
     <FrameLayout
         android:id="@+id/layout_spinnerProdi"
         android:layout_width="0dp"
@@ -25,6 +25,7 @@
             android:paddingEnd="32dp"/>
     </FrameLayout>
 
+<!--    Spinner Person In Charged-->
     <FrameLayout
         android:id="@+id/layout_spinnerPIC"
         android:layout_width="0dp"
@@ -42,6 +43,7 @@
             android:layout_height="40dp" />
     </FrameLayout>
 
+<!--    Spinner Programmer-->
     <FrameLayout
         android:id="@+id/layout_spinnerProgrammer"
         android:layout_width="0dp"
@@ -59,6 +61,7 @@
             android:layout_height="40dp" />
     </FrameLayout>
 
+<!--    Button Delete-->
     <ImageButton
         android:id="@+id/btn_delete"
         android:layout_width="50dp"

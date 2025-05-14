@@ -9,16 +9,7 @@
     android:background="@drawable/fragment_bg"
     tools:context=".ui.register.RegisterActivity">
 
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:scaleType="center"-->
-<!--        android:src="@drawable/login_register_bg"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"/>-->
-
+<!--Register Text-->
     <TextView
         android:id="@+id/text_Register"
         android:layout_width="wrap_content"
@@ -32,6 +23,8 @@
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+<!--Username Text-->
     <TextView
         android:id="@+id/text_Email"
         android:layout_width="wrap_content"
@@ -44,6 +37,7 @@
         app:layout_constraintTop_toBottomOf="@id/text_Register"
         app:layout_constraintStart_toStartOf="@id/text_Register"/>
 
+<!--    Username Input Layout-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputUsername"
         style="@style/custom_input"
@@ -66,6 +60,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+<!--    Email Text-->
     <TextView
         android:id="@+id/textEmail"
         android:layout_width="wrap_content"
@@ -78,6 +73,7 @@
         app:layout_constraintTop_toBottomOf="@id/textInputUsername"
         app:layout_constraintStart_toStartOf="@id/textInputUsername"/>
 
+<!--    Email Input Layout-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInput_Email"
         style="@style/custom_input"
@@ -100,6 +96,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+<!--    Password Text-->
     <TextView
         android:id="@+id/text_Password"
         android:layout_width="wrap_content"
@@ -112,6 +109,7 @@
         app:layout_constraintTop_toBottomOf="@id/textInput_Email"
         app:layout_constraintStart_toStartOf="@id/textInput_Email"/>
 
+<!--    Password Input Layout-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputPassword"
         style="@style/custom_input"
@@ -134,6 +132,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+<!--    Confirm Password Text-->
     <TextView
         android:id="@+id/textConfirmPassword"
         android:layout_width="wrap_content"
@@ -146,6 +145,7 @@
         app:layout_constraintTop_toBottomOf="@id/textInputPassword"
         app:layout_constraintStart_toStartOf="@id/textInputPassword"/>
 
+<!--    Confirm Password Input Layout-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputConfirmPassword"
         style="@style/custom_input"
@@ -166,6 +166,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+<!--    Register Button-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_register"
         android:layout_width="328dp"
@@ -178,6 +179,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputConfirmPassword" />
 
+    <!--    Linearlayout for redirecting to the login page-->
     <LinearLayout
         android:id="@+id/layoutTextLogin"
         android:layout_width="wrap_content"

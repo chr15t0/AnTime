@@ -36,12 +36,14 @@
     <string name="create">Create</string>
     <string name="schedule_successfully_generated">Schedule Successfully Generated!</string>
     <string name="successfully_generated_schedule_detail">You schedule has been successfully generated! You can now view your schedule at the home menu.</string>
-    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="login_in_with_google">Login with Google</string>
     <string name="antime">AnTime</string>
     <string name="already_have_an_account">Already have an Account?</string>
     <string name="profile">Profile</string>
     <string name="my_schedule">My Schedule</string>
     <string name="log_out">Log Out</string>
+    <string name="update">Update</string>
+    <string name="confirm_current_password">Confirm current password</string>
 
 
     <string-array name="pic_array">
@@ -96,5 +98,20 @@
         <item>S-2 Studi Pembangunan</item>
         <item>S-3 Studi Pembangunan</item>
         <item>S-3 Ilmu Komunikasi</item>
+        <item>S-1 Bahasa Mandarin</item>
+        <item>S-1 Etnomusikologi</item>
+        <item>S-1 Ilmu Sejarah</item>
+        <item>S-1 Perpustakaan dan Sains Informasi</item>
+        <item>S-1 Sastra Arab</item>
+        <item>S-1 Sastra Batak</item>
+        <item>S-1 Sastra Indonesia</item>
+        <item>S-1 Sastra Inggris</item>
+        <item>S-1 Sastra Jepang</item>
+        <item>S-1 Sastra Melayu</item>
+        <item>S-2 Bahasa Inggris</item>
+        <item>S-2 Ilmu Sejarah</item>
+        <item>S-2 Linguistik</item>
+        <item>S-2 Penciptaan dan Pengkajian Seni</item>
+        <item>S-3 Linguistik</item>
     </string-array>
 </resources>

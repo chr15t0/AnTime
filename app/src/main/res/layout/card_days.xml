@@ -16,6 +16,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+<!--        Day Text-->
         <TextView
             android:id="@+id/textDay"
             android:layout_width="wrap_content"

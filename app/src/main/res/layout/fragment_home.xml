@@ -16,68 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-<!--            Card Username-->
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/card_welcome"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="150dp"-->
-<!--                app:cardCornerRadius="15dp"-->
-<!--                android:backgroundTint="@color/green_light"-->
-<!--                android:layout_marginHorizontal="16dp"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent">-->
-
-<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textWelcomeBack"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="16dp"-->
-<!--                        android:layout_marginTop="16dp"-->
-<!--                        android:fontFamily="sans-serif"-->
-<!--                        android:text="@string/welcome_back"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="20sp"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/text_Username"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="16dp"-->
-<!--                        android:layout_marginTop="8dp"-->
-<!--                        android:layout_marginEnd="16dp"-->
-<!--                        android:ellipsize="end"-->
-<!--                        android:maxLines="1"-->
-<!--                        android:fontFamily="sans-serif"-->
-<!--                        android:text="Username!"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:textColor="#2c673c"-->
-<!--                        android:textSize="48sp"-->
-<!--                        app:layout_constraintEnd_toStartOf="@id/image_user"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toBottomOf="@id/textWelcomeBack" />-->
-
-<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--                        android:id="@+id/image_user"-->
-<!--                        android:layout_height="100dp"-->
-<!--                        android:layout_width="100dp"-->
-<!--                        tools:src="@tools:sample/avatars"-->
-<!--                        app:civ_border_color="@color/yellow_primary"-->
-<!--                        app:civ_border_width="3dp"-->
-<!--                        android:layout_marginEnd="16dp"-->
-<!--                        app:layout_constraintTop_toTopOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toEndOf="@id/text_Username"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"/>-->
-<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
-
+<!--            Text welcome back-->
             <TextView
                 android:id="@+id/text_WelcomeBack"
                 android:layout_width="wrap_content"
@@ -92,6 +31,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+<!--            Text Username-->
             <TextView
                 android:id="@+id/text_UsernameHomeFragment"
                 android:layout_width="0dp"
@@ -111,6 +51,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_WelcomeBack"/>
 
+<!--            Text date-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_date"
                 android:layout_width="wrap_content"
@@ -138,6 +79,7 @@
                     android:layout_gravity="center_vertical"/>
             </androidx.cardview.widget.CardView>
 
+<!--            Text My Tasks-->
             <TextView
                 android:id="@+id/text_myTasks"
                 android:layout_width="wrap_content"
@@ -153,6 +95,7 @@
                 app:layout_constraintTop_toBottomOf="@id/card_date"
                 app:layout_constraintStart_toStartOf="parent"/>
 
+<!--            To-Do List card view-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_ToDoList"
                 android:layout_width="0dp"
@@ -214,7 +157,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-<!--            Card view completed-->
+<!--            Card view completed teaks-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_CompletedTask"
                 android:layout_width="0dp"

@@ -13,8 +13,9 @@
         android:layout_height="match_parent"
         android:padding="16dp">
 
+<!--        Updated Title-->
         <TextView
-            android:id="@+id/text_PasswordUpdated"
+            android:id="@+id/text_Updated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -28,8 +29,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+<!--        Updated description-->
         <TextView
-            android:id="@+id/text_PasswordUpdatedDescription"
+            android:id="@+id/text_UpdatedDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -40,10 +42,11 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_PasswordUpdated"/>
+            app:layout_constraintTop_toBottomOf="@id/text_Updated"/>
 
+<!--        Button Ok-->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_password_mengerti"
+            android:id="@+id/btn_UpdatedDataOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -53,9 +56,9 @@
             android:layout_marginTop="8dp"
             app:cornerRadius="10dp"
             android:elevation="30dp"
-            app:layout_constraintEnd_toEndOf="@id/text_PasswordUpdatedDescription"
-            app:layout_constraintStart_toStartOf="@id/text_PasswordUpdatedDescription"
-            app:layout_constraintTop_toBottomOf="@id/text_PasswordUpdatedDescription"/>
+            app:layout_constraintEnd_toEndOf="@id/text_UpdatedDescription"
+            app:layout_constraintStart_toStartOf="@id/text_UpdatedDescription"
+            app:layout_constraintTop_toBottomOf="@id/text_UpdatedDescription"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

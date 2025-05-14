@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+<!--        Create New To-do List Title-->
         <TextView
             android:id="@+id/text_createToDoList"
             android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+<!--        Input Text Layout To-Do_list-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_inputToDoList"
             android:layout_width="match_parent"
@@ -51,6 +53,7 @@
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
+<!--        Button create to-do list-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_createNewToDoList"
             android:layout_width="match_parent"

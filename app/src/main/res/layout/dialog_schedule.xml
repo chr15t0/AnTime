@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         android:padding="16dp">
 
+<!--        Schedule Successfully Generated Text-->
         <TextView
             android:id="@+id/text_ScheduleSuccessfullyGenerated"
             android:layout_width="match_parent"
@@ -29,6 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+<!--        Description Text-->
         <TextView
             android:id="@+id/text_ScheduleSuccessfullyGeneratedDescription"
             android:layout_width="match_parent"
@@ -54,6 +56,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+<!--                Monday Text-->
                 <TextView
                     android:id="@+id/text_monday"
                     android:layout_width="wrap_content"
@@ -68,6 +72,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
+<!--                Monday Schedule RecyclerView-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_scheduleMonday"
                     android:layout_width="0dp"
@@ -78,13 +83,13 @@
                     tools:itemCount="5"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:visibility="visible"
-                    android:nestedScrollingEnabled="false"
                     app:layout_constraintVertical_bias="0"
                     app:layout_constraintTop_toBottomOf="@id/text_monday"
                     app:layout_constraintBottom_toTopOf="@id/text_tuesday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
 
+<!--                Tuesday Text-->
                 <TextView
                     android:id="@+id/text_tuesday"
                     android:layout_width="wrap_content"
@@ -99,6 +104,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rv_scheduleMonday"/>
 
+<!--                Tuesday Schedule RecyclerView-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_scheduleTuesday"
                     android:layout_width="0dp"
@@ -109,13 +115,13 @@
                     tools:itemCount="5"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:visibility="visible"
-                    android:nestedScrollingEnabled="false"
                     app:layout_constraintVertical_bias="0"
                     app:layout_constraintTop_toBottomOf="@id/text_tuesday"
                     app:layout_constraintBottom_toTopOf="@id/text_Wednesday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
 
+<!--                Wednesday Text-->
                 <TextView
                     android:id="@+id/text_Wednesday"
                     android:layout_width="wrap_content"
@@ -130,6 +136,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rv_scheduleTuesday"/>
 
+<!--                Wednesday Schedule RecyclerView-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_scheduleWednesday"
                     android:layout_width="0dp"
@@ -140,13 +147,13 @@
                     tools:itemCount="5"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:visibility="visible"
-                    android:nestedScrollingEnabled="false"
                     app:layout_constraintVertical_bias="0"
                     app:layout_constraintTop_toBottomOf="@id/text_Wednesday"
                     app:layout_constraintBottom_toTopOf="@id/text_Thursday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
 
+<!--                Thursday Text-->
                 <TextView
                     android:id="@+id/text_Thursday"
                     android:layout_width="wrap_content"
@@ -161,6 +168,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rv_scheduleWednesday"/>
 
+<!--                Thursday Schedule RecyclerView-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_scheduleThursday"
                     android:layout_width="0dp"
@@ -171,13 +179,13 @@
                     tools:itemCount="5"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:visibility="visible"
-                    android:nestedScrollingEnabled="false"
                     app:layout_constraintVertical_bias="0"
                     app:layout_constraintTop_toBottomOf="@id/text_Thursday"
                     app:layout_constraintBottom_toTopOf="@id/text_Friday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
 
+<!--                Friday Text-->
                 <TextView
                     android:id="@+id/text_Friday"
                     android:layout_width="wrap_content"
@@ -192,6 +200,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rv_scheduleThursday"/>
 
+<!--                Friday Schedule Recyclerview-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_scheduleFriday"
                     android:layout_width="0dp"
@@ -202,15 +211,14 @@
                     tools:itemCount="5"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:visibility="visible"
-                    android:nestedScrollingEnabled="false"
                     app:layout_constraintVertical_bias="0"
                     app:layout_constraintTop_toBottomOf="@id/text_Friday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </ScrollView>
 
+<!--        Button ok, to redirect to Home page-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_ok"
             android:layout_width="wrap_content"

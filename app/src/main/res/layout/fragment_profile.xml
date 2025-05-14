@@ -25,6 +25,7 @@
             android:layout_height="match_parent"
             android:padding="16dp">
 
+<!--            user icon-->
             <ImageView
                 android:id="@+id/icon_account"
                 android:layout_width="100dp"
@@ -35,6 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
+<!--            text username-->
             <TextView
                 android:id="@+id/text_UsernameProfileFragment"
                 android:layout_width="wrap_content"
@@ -54,6 +56,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
+<!--            text email-->
             <TextView
                 android:id="@+id/text_Email"
                 android:layout_width="wrap_content"
@@ -70,6 +73,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
+<!--            image streaks-->
             <ImageView
                 android:id="@+id/icon_taskStreak"
                 android:layout_width="25dp"
@@ -81,6 +85,7 @@
                 app:layout_constraintTop_toBottomOf="@id/text_Email"
                 app:layout_constraintBottom_toBottomOf="@id/divider1"/>
 
+<!--            text streaks counter / number of tasks completed-->
             <TextView
                 android:id="@+id/text_NumberTaskCompleted"
                 android:layout_width="wrap_content"
@@ -92,7 +97,6 @@
                 android:ellipsize="end"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:layout_marginStart="4dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="@id/icon_taskStreak"
                 app:layout_constraintTop_toTopOf="@id/icon_taskStreak"
@@ -107,7 +111,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@id/icon_taskStreak"/>
 
-
+<!--            Clickable text to change username-->
             <TextView
                 android:id="@+id/btn_ChangeUserame"
                 android:layout_width="wrap_content"
@@ -140,7 +144,7 @@
                 app:layout_constraintTop_toBottomOf="@id/btn_ChangeUserame"
                 app:layout_constraintBottom_toTopOf="@id/btn_ChangeEmail"/>
 
-
+<!--            Clickable text to change email-->
             <TextView
                 android:id="@+id/btn_ChangeEmail"
                 android:layout_width="wrap_content"
@@ -172,7 +176,7 @@
                 app:layout_constraintTop_toBottomOf="@id/btn_ChangeEmail"
                 app:layout_constraintBottom_toTopOf="@id/btn_ChangePassword"/>
 
-
+<!--            clickable text to change password-->
             <TextView
                 android:id="@+id/btn_ChangePassword"
                 android:layout_width="wrap_content"
@@ -204,6 +208,7 @@
                 app:layout_constraintTop_toBottomOf="@id/btn_ChangePassword"
                 app:layout_constraintBottom_toTopOf="@id/btn_logout"/>
 
+<!--            clickable text to log out-->
             <TextView
                 android:id="@+id/btn_logout"
                 android:layout_width="wrap_content"

@@ -9,6 +9,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.todoList.ToDoListActivity">
 
+<!--    To-Do List Title Text-->
     <TextView
         android:id="@+id/text_title_ToDoList"
         android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+<!--    To-Do List RecyclerView-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_ToDoList"
         android:layout_width="match_parent"
@@ -39,6 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+<!--    Floating Action Button for adding new To-Do List-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
         android:layout_width="wrap_content"
