@@ -12,12 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.antime.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        android:id="@+id/navigation_generate"
+        android:name="com.example.antime.ui.dashboard.GenerateFragment"
+        android:label="@string/title_generate"
+        tools:layout="@layout/fragment_generate" >
         <action
-            android:id="@+id/action_navigation_dashboard_to_navigation_home"
+            android:id="@+id/action_navigation_generate_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
 

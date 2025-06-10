@@ -3,7 +3,7 @@ package com.example.antime.algorithm
 import kotlin.math.pow
 import kotlin.random.Random
 
-class RankBasedAS(private val activities: List<Activities>) {
+class RankBasedAS(private val activities: List<Activities>, private val listMeetings : HashMap<String, MutableList<Int>>) {
     private val pheromone : MutableMap<String,Double> = mutableMapOf()
     private val alpha = 1.0
     private val beta = 2.0
@@ -18,21 +18,28 @@ class RankBasedAS(private val activities: List<Activities>) {
         var bestScore = Double.MIN_VALUE
 
         for (i in 0 until numIteratrions){
+            println("Iterasi $i:")
+
             val antSolutions = mutableListOf<Pair<List<Assignment>,Double>>()
             repeat(numAnts){
                 val assignment = constructSolution()
                 val score = evaluateSolution(assignment)
                 antSolutions.add(assignment to score)
+                println("Ant $it: Score = $score")
             }
 
             antSolutions.sortByDescending { it.second }
+            println("Score terbaik pada iterasi ini: ${antSolutions[0].second}")
+
             if (antSolutions[0].second > bestScore){
                 globalBest = antSolutions[0].first
                 bestScore = antSolutions[0].second
+                println("New global best score found: $bestScore")
             }
             updatePheromone(antSolutions.take(rankFactor))
+            println("Pheromone updated for top ${rankFactor} solutions.")
         }
-        
+        println("Final best score: $bestScore")
         return globalBest
     }
 
@@ -45,7 +52,7 @@ class RankBasedAS(private val activities: List<Activities>) {
 
             for (day in days) {
                 for (hour in timeSlots) {
-                    if (day == "Monday" && hour == 10) continue // meeting constraint
+                    if (listMeetings.containsKey(day) && listMeetings[day]?.contains(hour)==true) continue // meeting constraint
                     if (hour == 12) continue // lunch break
                     for (room in rooms) {
                         val key = "${day}_${hour}_${room}"
@@ -96,31 +103,11 @@ class RankBasedAS(private val activities: List<Activities>) {
         val violations = solution.sumOf { assignment ->
             countViolations(assignment, solution)
         }
-        return q / (1 + violations) // Higher score for fewer violations
+        return q / (1 + violations)
     }
 
     private fun countViolations(assignment: Assignment, solution: List<Assignment>): Int {
         var violations = 0
-
-//        // Check for room conflicts
-//        if (solution.any {
-//                it != assignment &&
-//                        it.room == assignment.room &&
-//                        it.startHour == assignment.startHour &&
-//                        it.day == assignment.day
-//            }) {
-//            violations++
-//        }
-//
-//        // Check for PIC or programmer conflicts
-//        if (solution.any {
-//                it != assignment &&
-//                        (it.activities.pic == assignment.activities.pic || it.activities.programmer == assignment.activities.programmer) &&
-//                        it.startHour == assignment.startHour &&
-//                        it.day == assignment.day
-//            }) {
-//            violations++
-//        }
         solution.filter { it!= assignment&&
         it.day == assignment.day&&
         it.startHour == assignment.startHour
@@ -134,7 +121,7 @@ class RankBasedAS(private val activities: List<Activities>) {
 
 
     private fun updatePheromone(topRanked: List<Pair<List<Assignment>, Double>>) {
-        pheromone.entries.forEach{ pheromone[it.key] = it.value * (1-rho)}
+        pheromone.entries.forEach{ pheromone[it.key] = it.value * (1-  rho)}
 
         for ((rank, pair) in topRanked.withIndex()) {
             val (assignments, _) = pair

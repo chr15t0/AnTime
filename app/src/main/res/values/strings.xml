@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AnTime</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_generate">Generate</string>
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -26,8 +26,8 @@
     <string name="your_web_id">354872117704-9c2j6tqale5d2bpagrggru64ahstrqie.apps.googleusercontent.com</string>
     <string name="invalid_email">Invalid email address</string>
     <string name="invalid_password_length">Password should be 8 characters long!</string>
-    <string name="add_activity">Add Activity</string>
-    <string name="generate_schedule">Generate schedule</string>
+    <string name="add_activity">Add Activitiy</string>
+    <string name="generate_schedule">Generate Schedule</string>
     <string name="my_tasks">My Tasks</string>
     <string name="to_do_list">To-Do List</string>
     <string name="_0">0</string>
@@ -44,10 +44,13 @@
     <string name="log_out">Log Out</string>
     <string name="update">Update</string>
     <string name="confirm_current_password">Confirm current password</string>
+    <string name="add_meeting">Add Meeting</string>
+    <string name="meeting_schedule">Meeting Schedule</string>
+    <string name="activity">Activity</string>
 
 
     <string-array name="pic_array">
-        <item>Pilih PIC</item>
+        <item>Choose a PIC</item>
         <item>Christoffel Daniel Yesaya Tambunan</item>
         <item>David Kevin Handel Hutabarat</item>
         <item>Fenny Julistine Tarigan</item>
@@ -55,14 +58,14 @@
     </string-array>
 
     <string-array name="programmer_array">
-        <item>Pilih Programmer</item>
+        <item>Choose a Programmer</item>
         <item>Fathurrahman</item>
         <item>Said Muhammad Mazaya</item>
         <item>Wildan Taufik Wibowo Nasution</item>
     </string-array>
 
     <string-array name="prodi_array">
-        <item>Pilih Program Studi</item>
+        <item>Choose a Study Program</item>
         <item>D-3 Akuntansi</item>
         <item>D-3 Keuangan</item>
         <item>D-3 Kesekretariatan</item>
@@ -113,5 +116,169 @@
         <item>S-2 Linguistik</item>
         <item>S-2 Penciptaan dan Pengkajian Seni</item>
         <item>S-3 Linguistik</item>
+        <item>S-1 Ekonomi Pembangunan</item>
+        <item>S-1 Manajemen</item>
+        <item>S-1 Akuntansi</item>
+        <item>S-1 Kewirausahaan</item>
+        <item>S-2 Ilmu Akuntansi</item>
+        <item>S-2 Ilmu Ekonomi</item>
+        <item>S-2 Ilmu Manajemen</item>
+        <item>S-3 Ilmu Akuntansi</item>
+        <item>S-3 Ilmu Ekonomi</item>
+        <item>S-3 Ilmu Manajemen</item>
+        <item>S-1 Kedokteran</item>
+        <item>Profesi Dokter</item>
+        <item>Spesialis-1 Ilmu Kesehatan Anak</item>
+        <item>Spesialis-1 Obstetri dan Ginekologi</item>
+        <item>Spesialis-1 Bedah</item>
+        <item>Spesialis-1 Penyakit Dalam</item>
+        <item>Spesialis-1 Ilmu Kesehatan Telinga Hidung Tenggorok, Bedah Kepala dan Leher</item>
+        <item>Spesialis-1 Dermatologi Venereologi dan Estetika</item>
+        <item>Spesialis-1 Ilmu Kesehatan Mata</item>
+        <item>Spesialis-1 Pulmonologi dan Kedokteran Respirasi</item>
+        <item>Spesialis-1 Patologi Klinik</item>
+        <item>Spesialis-1 Neurologi</item>
+        <item>Spesialis-1 Kedokteran Jiwa</item>
+        <item>Spesialis-1 Anestesiologi dan Terapi Intensif</item>
+        <item>Spesialis-1 Patologi Anatomik</item>
+        <item>Spesialis-1 Kedokteran Forensik dan Studi Medikolegal</item>
+        <item>Spesialis-1 Bedah Saraf</item>
+        <item>Spesialis-1 Orthopaedi dan Traumatologi</item>
+        <item>Spesialis-1 Jantung dan Pembuluh Darah</item>
+        <item>Spesialis-1 Bedah Urologi</item>
+        <item>Spesialis-1 Ilmu Gizi Klinik</item>
+        <item>Spesialis-1 Ilmu Kedokteran Keluarga Layanan Primer</item>
+        <item>Spesialis-1 Radiologi</item>
+        <item>Spesialis-2 Obstetri dan Ginekologi</item>
+        <item>Spesialis-2 Ilmu Bedah</item>
+        <item>Spesialis-2 Ilmu Penyakit Dalam</item>
+        <item>Spesialis-2 Pulmonologi dan Kedokteran Respirasi</item>
+        <item>S-2 Ilmu Kedokteran Klinis</item>
+        <item>S-2 Ilmu Kedokteran Tropis</item>
+        <item>S-2 Ilmu Biomedik</item>
+        <item>S-3 Ilmu Kedokteran</item>
+        <item>S-1 Agroteknologi</item>
+        <item>S-1 Agribisnis</item>
+        <item>S-1 Peternakan</item>
+        <item>S-1 Teknologi Pangan</item>
+        <item>S-1 Teknik Pertanian dan Biosistem</item>
+        <item>S-1 Manajemen Sumber Daya Perairan</item>
+        <item>S-1 Agroteknologi Kampus Kabupaten Nias Utara</item>
+        <item>S-1 Manajemen Sumber Daya Perairan Kampus Kabupaten Nias Utara</item>
+        <item>S-2 Agroteknologi</item>
+        <item>S-2 Agribisnis</item>
+        <item>S-2 Ilmu Peternakan</item>
+        <item>S-2 Ilmu Pangan</item>
+        <item>S-3 Ilmu Pertanian</item>
+        <item>S-1 Kehutanan</item>
+        <item>S-2 Kehutanan</item>
+        <item>S-1 Hukum</item>
+        <item>S-2 Ilmu Hukum</item>
+        <item>S-2 Kenotariatan</item>
+        <item>S-3 Ilmu Hukum</item>
+        <item>S-1 ilmu komputer</item>
+        <item>S-1 teknologi informasi</item>
+        <item>S-2 Teknik Informatika</item>
+        <item>S-2 Sains data dan kecerdasan Buatan</item>
+        <item>S-3 Ilmu Komputer</item>
+        <item>S-2 Manajemen</item>
+        <item>S-2 Perencanaan Pembangunan Wilayah dan Pedesaan (PWD)</item>
+        <item>S-2 Pengelolaan Sumberdaya Alam dan Lingkungan</item>
+        <item>S-3 Perencanaan Wilayah (PW)</item>
+        <item>S-3 Pengelolaan Sumberdaya Alam dan Lingkungan (PSL)</item>
+        <item>S-1 Bahasa Mandarin</item>
+        <item>S-1 Etnomusikologi</item>
+        <item>S-1 Ilmu Sejarah</item>
+        <item>S-1 Perpustakaan dan Sains Informasi</item>
+        <item>S-1 Sastra Arab </item>
+        <item>S-1 Sastra Batak</item>
+        <item>S-1 Sastra Indonesia</item>
+        <item>S-1 Sastra Inggris</item>
+        <item>S-1 Sastra Jepang</item>
+        <item>S-1 Sastra Melayu</item>
+        <item>S-2 Bahasa Inggris</item>
+        <item>S-2 Ilmu Sejarah</item>
+        <item>S-2 Linguistik</item>
+        <item>S-2 Penciptaan dan Pengkajian Seni</item>
+        <item>S-3 Linguistik</item>
+        <item>S-1 Keperawatan</item>
+        <item>Program Pendidikan Profesi Ners</item>
+        <item>S-2 Ilmu Keperawatan</item>
+        <item>(PSL)S-2 Manajemen Properti dan Penilaian</item>
+        <item>S-1 Psikologi</item>
+        <item>Psikologi Profesi</item>
+        <item>S-2 Psikologi Sains</item>
+        <item>S-1 Kesehatan masyarakat</item>
+        <item>S-1 Gizi</item>
+        <item>S-2 Ilmu Kesehatan Masyarakat</item>
+        <item>S-3 Ilmu Kesehatan masyarakat</item>
+        <item>S-1 Farmasi</item>
+        <item>Program Studi Pendidikan Profesi Apoteker</item>
+        <item>S-2 Ilmu Farmasi</item>
+        <item>S-3 Ilmu Farmasi</item>
+        <item>S-1 Teknik Kimia</item>
+        <item>S-1 Teknik Elektro</item>
+        <item>S-1 Teknik Lingkungan</item>
+        <item>S-1 Teknik Mesin</item>
+        <item>S-1 Teknik Industri</item>
+        <item>S-1 Arsitektur</item>
+        <item>S-1 Teknik Sipil</item>
+        <item>Profesi Arsitek</item>
+        <item>Pendidikan Profesi Insinyur</item>
+        <item>S-2 Teknik Arsitektur</item>
+        <item>S-2 Teknik Sipil</item>
+        <item>S-2 Teknik Kimia</item>
+        <item>S-2 Teknik Mesin</item>
+        <item>S-2 Teknik Industri</item>
+        <item>S-2 Teknik Elektro</item>
+        <item>S-3 Ilmu Arsitektur dan Perkotaan</item>
+        <item>S-3 Ilmu Teknik Sipil</item>
+        <item>S-3 Ilmu Teknik Kimia</item>
+        <item>S-3 Ilmu Teknik Mesin</item>
+        <item>S-3 Ilmu Teknik Industri</item>
+        <item>S-1 Matematika</item>
+        <item>S-1 Fisika</item>
+        <item>S-1 Kimia</item>
+        <item>S-1 Biologi</item>
+        <item>S-2 Matematika</item>
+        <item>S-2 Fisika</item>
+        <item>S-2 Kimia</item>
+        <item>S-2 Biologi</item>
+        <item>S-3 Matematika</item>
+        <item>S-3 Fisika</item>
+        <item>S-3 Kimia</item>
+        <item>S-3 Biologi</item>
+        <item>S-1 Kedokteran Gigi</item>
+        <item>Program Pendidikan Dokter Gigi Spesialis Konservasi Gigi</item>
+        <item>Program Pendidikan Dokter Gigi Spesialis Ortodonsia</item>
+        <item>Program Pendidikan Dokter Gigi Spesialis Periodonsia</item>
+        <item>Program Pendidikan Dokter Gigi Spesialis Prostodonsia</item>
+        <item>Program Pendidikan Dokter Gigi Spesialis Bedah Mulut dan Maksilofasial</item>
+        <item>S-2 Ilmu Kedokteran Gigi</item>
+        <item>S-3 Ilmu Kedokteran Gigi</item>
+    </string-array>
+
+    <string-array name="day_array">
+        <item>Choose a day</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
+
+<!--    <integer-array name="hour_array">-->
+<!--        <item>8</item>-->
+<!--        <item>10</item>-->
+<!--        <item>13</item>-->
+<!--        <item>15</item>-->
+<!--        <item>15</item>-->
+<!--    </integer-array>-->
+    <string-array name="hour_array">
+        <item>Choose a time</item>
+        <item>8:00</item>
+        <item>10:00</item>
+        <item>13:00</item>
+        <item>15:00</item>
     </string-array>
 </resources>

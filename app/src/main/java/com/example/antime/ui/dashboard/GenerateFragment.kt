@@ -1,7 +1,6 @@
 package com.example.antime.ui.dashboard
 
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -14,15 +13,12 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.antime.R
 import com.example.antime.algorithm.RankBasedAS
 import com.example.antime.databinding.FormAddActivityBinding
-import com.example.antime.databinding.FragmentDashboardBinding
 import com.example.antime.algorithm.Activities
 import com.example.antime.algorithm.Assignment
 import com.google.firebase.Firebase
@@ -31,26 +27,31 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import androidx.core.view.isEmpty
+import androidx.core.view.isNotEmpty
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antime.algorithm.DailySchedule
 import com.example.antime.algorithm.Schedule
-import com.example.antime.ui.detailDailyActivities.DetailDailyActivity
+import com.example.antime.databinding.FormAddMeetingTimeBinding
+import com.example.antime.databinding.FragmentGenerateBinding
 import com.example.antime.ui.detailDailyActivities.ScheduleAdapter
-import com.example.antime.ui.home.DaysAdapter
-import com.example.antime.ui.home.HomeFragment
 
-class DashboardFragment : Fragment() {
+class GenerateFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentGenerateBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
     private val listActivities = ArrayList<Activities>()
+    private val listMeetings = HashMap<String,MutableList<Int>>()
     private lateinit var auth : FirebaseAuth
     private val db = Firebase.firestore
     private lateinit var dialog :Dialog
+    private var numberOfActivities = 0
+    private var numberOfMeetings=0
+    private var maxActivities = 40
+    private var maxMeetings = 20
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +61,7 @@ class DashboardFragment : Fragment() {
         val dashboardViewModel =
             ViewModelProvider(this).get(DashboardViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentGenerateBinding.inflate(inflater, container, false)
         val root: View = binding.root
         auth = Firebase.auth
         return root
@@ -75,12 +76,27 @@ class DashboardFragment : Fragment() {
         dialog.setCancelable(true)
 
         binding.btnAddActivities.setOnClickListener{
-            addActivity()
+            if (numberOfActivities < maxActivities) {
+                addActivity()
+                numberOfActivities++
+            } else {
+                Toast.makeText(requireContext(), "Maximum activities reached!", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.btnAddMeeting.setOnClickListener{
+            if (numberOfMeetings < maxMeetings) {
+                addMeeting()
+                maxActivities -= 2
+                numberOfMeetings++
+                if (maxActivities < 0) maxActivities = 0
+            } else {
+                Toast.makeText(requireContext(), "Maximum meetings reached!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.btnGenerateSchedule.setOnClickListener{
             if(checkifValidandRead()){
-                val scheduler = RankBasedAS(listActivities)
+                val scheduler = RankBasedAS(listActivities,listMeetings)
                 val resultRankedAS = scheduler.schedule()
                 saveToFirestore(user,resultRankedAS)
                 Log.d("GlobalBest: ",resultRankedAS.toString())
@@ -88,9 +104,27 @@ class DashboardFragment : Fragment() {
                     Log.d("ASRANK_RESULT", "${it.activities.prodi} - ${it.activities.pic}/${it.activities.programmer} scheduled on ${it.day} at ${it.startHour} in ${it.room}")
                 }
 
-                Toast.makeText(requireContext(), "Scheduling done! Check Logcat.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Scheduling done!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun addMeeting() {
+        val listBindingMeeting = FormAddMeetingTimeBinding.inflate(layoutInflater)
+        val spinnerDay: Spinner = listBindingMeeting.spinnerMeetingDay
+        spinnerDay.adapter = setAdapter(R.array.day_array)
+
+        val spinnerHour: Spinner = listBindingMeeting.spinnerMeetingHour
+        spinnerHour.adapter = setAdapter(R.array.hour_array)
+
+        val btnDelete = listBindingMeeting.btnDelete
+        btnDelete.setOnClickListener{
+            binding.layoutListMeetings.removeView(listBindingMeeting.root)
+            maxActivities += 2
+            numberOfMeetings--
+        }
+        binding.layoutListMeetings.addView(listBindingMeeting.root)
+
     }
 
     private fun addActivity() {
@@ -108,6 +142,7 @@ class DashboardFragment : Fragment() {
         val btnDelete = listBinding.btnDelete
         btnDelete.setOnClickListener{
             binding.layoutListActivities.removeView(listBinding.root)
+            numberOfActivities--
         }
 
         binding.layoutListActivities.addView(listBinding.root)
@@ -121,6 +156,7 @@ class DashboardFragment : Fragment() {
 
     private fun checkifValidandRead(): Boolean {
         listActivities.clear()
+        listMeetings.clear()
         var result = true
         if (binding.layoutListActivities.childCount == null || binding.layoutListActivities.isEmpty()){
             Log.e("Validation", "No activities found in layoutListActivities")
@@ -148,6 +184,27 @@ class DashboardFragment : Fragment() {
             )
             )
             Log.d("test",listActivities.toString())
+        }
+
+        if (binding.layoutListMeetings.childCount>0 || binding.layoutListMeetings.isNotEmpty()){
+            for(i in 0 until  binding.layoutListMeetings.childCount){
+                val meetings= binding.layoutListMeetings.getChildAt(i)
+                val day = meetings.findViewById<Spinner>(R.id.spinnerMeetingDay)
+                val hour = meetings.findViewById<Spinner>(R.id.spinnerMeetingHour)
+
+                if(day.selectedItemPosition==0 || hour.selectedItemPosition==0) {
+                    Log.e("Validation", "Nothing has been selected at list $i")
+                    Toast.makeText(requireContext(),"Make sure all fields have been selected at list ${i+1}",Toast.LENGTH_LONG).show()
+                    result = false
+                }
+
+                if (listMeetings[day.selectedItem.toString()]==null){
+                    listMeetings[day.selectedItem.toString()] = mutableListOf(hour.selectedItem.toString().split(":")[0].toInt())
+                }else{
+                    listMeetings[day.selectedItem.toString()]?.add(hour.selectedItem.toString().split(":")[0].toInt())
+                }
+                Log.d("test",listMeetings.toString())
+            }
         }
 
         return result
@@ -188,52 +245,13 @@ class DashboardFragment : Fragment() {
     }
 
     private fun showDialogSchedule(user: FirebaseUser?) {
-//        db.collection("users").document(user?.uid.toString())
-//            .collection("schedules").document("daily schedule").get()
-//            .addOnSuccessListener { document ->
-//                // Directly retrieve activities without checking document existence
-//                var activitiesMap = document.get("Activities") as? Map<String, ArrayList<Map<String, String>>> ?: emptyMap()
-//
-//                val scheduleText = StringBuilder()
-//
-//                //sort days
-//                val daysOrder = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-//                activitiesMap = activitiesMap.toSortedMap(compareBy { daysOrder.indexOf(it) })
-//
-//                activitiesMap?.forEach { (day, activities) ->
-//                    scheduleText.append("$day\n")
-//                    activities.forEach { activity ->
-//                        val prodi = activity["Prodi"] ?: "Unknown"
-//                        val pic = activity["Pic"] ?: "Unknown"
-//                        val programmer = activity["Programmer"] ?: "Unknown"
-//                        val room = activity["Room"] ?: "Unknown"
-//                        val startHour = activity["Start Hour"] ?: "Unknown"
-//                        val endHour = activity["End Hour"] ?: "Unknown"
-//
-//                        scheduleText.append("Prodi: $prodi\n")
-//                            .append("PIC: $pic\n")
-//                            .append("Programmer: $programmer\n")
-//                            .append("Room: $room\n")
-//                            .append("Start Hour: $startHour\n")
-//                            .append("End Hour: $endHour\n\n")
-//                    }
-//                }
-//
-//                // Set the retrieved schedule data into the dialog's TextView
-//                val textSchedule = dialog.findViewById<TextView>(R.id.textSchedule)
-//                textSchedule.text = scheduleText.toString()
-//            }
-//            .addOnFailureListener { e ->
-//                Log.e("Firestore", "Failed to fetch schedule", e)
-//                Toast.makeText(requireContext(), "Error fetching schedule", Toast.LENGTH_LONG).show()
-//            }
         dialog.setContentView(R.layout.dialog_schedule)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
 
         val btnOk : Button = dialog.findViewById(R.id.btn_ok)
         btnOk.setOnClickListener{
-            findNavController().navigate(R.id.action_navigation_dashboard_to_navigation_home)
+            findNavController().navigate(R.id.action_navigation_generate_to_navigation_home)
             dialog.dismiss()
         }
 

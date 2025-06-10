@@ -40,6 +40,8 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = binding.edtConfirmPassword.text.toString()
             if (username.isEmpty()||email.isEmpty()||password.isEmpty()||confirmPassword.isEmpty()){
                 Toast.makeText(this,"Text field shouldn't be empty!",Toast.LENGTH_LONG).show()
+            }else if (password.length < 8) { // <-- ADDED THIS CHECK
+                Toast.makeText(this,"Password should be at least 8 characters long!",Toast.LENGTH_LONG).show()
             }else{
                 if (password!=confirmPassword){
                     Toast.makeText(this,"Make sure you input the same password!",Toast.LENGTH_LONG).show()
@@ -78,28 +80,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
-//    private fun insertNewUserToFirestore(dataUser: HashMap<String, String?>) {
-//        val db = Firebase.firestore
-//        db.collection("users")
-//            .document(dataUser["id"].toString()).get()
-//            .addOnSuccessListener {document->
-//                if (document.exists()){
-//                    Toast.makeText(this,"This user has been registered, please login",Toast.LENGTH_LONG).show()
-//                }else{
-//                    db.collection("users")
-//                        .document(dataUser["id"].toString())
-//                        .set(dataUser)
-//                        .addOnSuccessListener {  documentReference ->
-//                            Log.d(TAG, "Successfully added data to Firestore document")
-//                            startActivity(Intent(this, MainActivity::class.java))
-//                            finish()
-//                        }
-//                        .addOnFailureListener { e ->
-//                            Log.w(TAG, "Error adding data to Firestore document", e)
-//                        }
-//                }
-//            }
-//    }
 private fun insertNewUserToFirestore(dataUser: HashMap<String, String?>) {
     val db = Firebase.firestore
     db.collection("users")
